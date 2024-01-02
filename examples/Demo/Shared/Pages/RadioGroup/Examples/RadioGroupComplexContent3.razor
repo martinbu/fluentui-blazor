@@ -1,0 +1,40 @@
+﻿<h4>Complex Content 3</h4>
+<label id="label1">Complex Content 3</label>
+<FluentRadioGroup aria-labelledby="label1" TValue="Item" @bind-Value=selectedItem  Name="ComplexContent" Orientation="Orientation.Vertical">
+    @foreach (var item in items)
+    {
+        <FluentRadio Value="@item" Style="border: 1px solid black; padding: 8px 16px">
+            <FluentStack Orientation="Orientation.Vertical">
+                <FluentLabel>@item.Name</FluentLabel>
+                <FluentTextField Label="Custom Name" @bind-Value="@item.CustomName" />
+                <FluentSwitch @bind-Value="@item.Enabled" Label="Enable" />
+            </FluentStack>
+        </FluentRadio>
+    }
+</FluentRadioGroup>
+
+
+<p>Your selected item: @selectedItem?.Name (@selectedItem?.CustomName | Enabled: @selectedItem?.Enabled)!</p>
+
+
+@code
+{
+    class Item
+    {
+        public Item(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
+        public string CustomName { get; set; } = "";
+        public bool Enabled { get; set; }
+    }
+
+    static Item[] items = [
+        new Item("Item 1"),
+        new Item("Item 2")
+    ];
+
+    Item? selectedItem = items[0];
+}

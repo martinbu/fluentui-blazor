@@ -1,0 +1,46 @@
+﻿<h4>Complex Content 1</h4>
+<label id="label1">If the content of the FluentTextField is set to Item 1 or Item 2 the selection is changed</label>
+<FluentRadioGroup aria-labelledby="label1" @bind-Value=selectedItemName  Name="ComplexContent" Orientation="Orientation.Vertical">
+    @foreach (var item in items)
+    {
+        <FluentRadio Value="@item.Name" Style="border: 1px solid black; padding: 8px 16px">
+            <FluentStack Orientation="Orientation.Vertical">
+                <FluentLabel>@item.Name</FluentLabel>
+                <FluentTextField Label="Custom Name" @bind-Value="@item.CustomName" />
+                <FluentSwitch @bind-Value="@item.Enabled" Label="Enable" />
+            </FluentStack>
+        </FluentRadio>
+    }
+</FluentRadioGroup>
+
+
+@if (selectedItem != null)
+{
+    <FluentTextField Label="Custom Name" @bind-Value="@selectedItem.CustomName" />
+    <p>Your selected item: @selectedItem.Name (@selectedItem.CustomName | Enabled: @selectedItem.Enabled)!</p>
+}
+
+
+
+@code
+{
+    class Item
+    {
+        public Item(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
+        public string CustomName { get; set; } = "";
+        public bool Enabled { get; set; }
+    }
+
+    static Item[] items = [
+        new Item("Item 1"),
+        new Item("Item 2")
+    ];
+
+    string? selectedItemName = items[0].Name;
+    Item? selectedItem => items.FirstOrDefault(x => x.Name == selectedItemName);
+}
