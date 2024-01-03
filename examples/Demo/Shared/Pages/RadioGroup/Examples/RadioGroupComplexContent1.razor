@@ -14,10 +14,15 @@
 </FluentRadioGroup>
 
 
+<p>SelectedItemName: @selectedItemName</p>
 @if (selectedItem != null)
 {
     <FluentTextField Label="Custom Name" @bind-Value="@selectedItem.CustomName" />
     <p>Your selected item: @selectedItem.Name (@selectedItem.CustomName | Enabled: @selectedItem.Enabled)!</p>
+}
+else
+{
+    <p>Nothing is selected</p>
 }
 
 
