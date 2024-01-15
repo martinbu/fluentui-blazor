@@ -1,0 +1,12 @@
+﻿<FluentTabs>
+    <FluentTab Label="Tab with Switch">
+        <span>Enabled: @Enabled</span>
+        <FluentSwitch @bind-Value="Enabled" />
+    </FluentTab>
+
+</FluentTabs>
+
+@code {
+    bool Enabled = false;
+}
+
