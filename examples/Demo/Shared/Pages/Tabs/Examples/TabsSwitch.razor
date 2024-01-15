@@ -1,12 +1,20 @@
 ﻿<FluentTabs>
     <FluentTab Label="Tab with Switch">
-        <span>Enabled: @Enabled</span>
-        <FluentSwitch @bind-Value="Enabled" />
+        <span>Enabled: @SwitchEnabled</span>
+        <FluentSwitch @bind-Value="SwitchEnabled" />
+
+        <span>Checked: @CheckBoxChecked</span>
+        <FluentCheckbox @bind-Value="CheckBoxChecked" />
+
+        <span>Content: @Content</span>
+        <FluentTextField @bind-Value="Content" />
     </FluentTab>
 
 </FluentTabs>
 
 @code {
-    bool Enabled = false;
+    bool SwitchEnabled = false;
+    bool CheckBoxChecked = false;
+    string Content = "";
 }
 
